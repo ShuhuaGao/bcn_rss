@@ -1,0 +1,4 @@
+name = "GraphRSS"
+uuid = "516fcf6f-f370-424f-af8d-c9751d86e297"
+authors = ["Shuhua <shuhua_gao@u.nus.edu>"]
+version = "0.1.0"
