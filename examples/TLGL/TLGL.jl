@@ -25,7 +25,7 @@ println("How many initial states are stabilizable? ", count(isfinite, H))
 println("T* for an arbitrary state in IcZ: ", H[rand(IcZ)])
 println("T* for state 1: ", H[1])
 println("T* for state 1234: ", H[1234])
-println("The largest T* except infinity: ", maximum(H))
+println("The largest T* except infinity: ", maximum(h for h in H if isfinite(h)))
 
 #NOTE: the following code may be very slow
 # calculate LRCIS with wang2022 method
