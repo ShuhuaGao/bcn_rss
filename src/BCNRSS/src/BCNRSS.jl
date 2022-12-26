@@ -8,12 +8,11 @@ const LM = LogicalMatrix
 const LV = LogicalVector
 
 include("boolean_network.jl")
-include("problem1.jl")
-include("problem2.jl")
-include("problem3.jl")
+include("LRCIS.jl")
+include("optimal_rss.jl")
 include("others/wang2022.jl")
 
-export calculate_Urb, calculate_Ds, calculate_LRCIS, calculate_RSSD, calculate_optimal_RSS,
-    calculate_ASSR, calculate_Urb_for_RCIS
+export calculate_Urb, calculate_S, calculate_LRCIS, calculate_RSSD, calculate_optimal_RSS,
+    calculate_ASSR, calculate_time_optimal_RSS
 
 end # module

@@ -98,7 +98,7 @@ module Wang2022
         t = 0
         W = IcS  # W_{t-1}
         T = BitMatrix(undef, M, N)
-        verbose && println("|R≤0| = $(length(IcS))")
+        verbose && println("T* <= 0: ", IcS)
         Rt = empty(S)
         while true
             W′ = setdiff(ΔN, W)  # Wt
@@ -123,7 +123,7 @@ module Wang2022
                 break
             end
             t += 1
-            verbose && println("|R≤$t| = $(length(Rt))")
+            verbose && println("T* <= $t: ", Rt)
             union!(W, Rt)
             if length(W) == N
                 break

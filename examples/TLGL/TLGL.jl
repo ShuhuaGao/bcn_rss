@@ -1,8 +1,9 @@
 using StatsBase
-using BCNRSS
-using BCNRSS: Wang2022
 using JLD2
 using Random
+using Revise
+using BCNRSS
+using BCNRSS: Wang2022
 
 # Random.seed!(123)
 
@@ -11,26 +12,20 @@ bcn = load("net.jld2", "bcn")
 Z = load("Z.jld2", "Z")
 
 # calculate LRCIS
-# Z = Set(sample(1:bcn.N, 500; replace=false))
 println("\nCalculate LRCIS...")
 @time IcZ = calculate_LRCIS(bcn, Z)
 println("Finished. |IcZ| = ", length(IcZ), " and |Z| = ", length(Z))
 
 # time-optimal robust set stabilization
-println("\nCalculate RSSD...")
-@time H, RSSD, U = calculate_RSSD(bcn, Z; verbose=true)
-println("Finished. H = $(H), |RSSD| = $(length(RSSD))")
-
-# optimal robust set stabilization
-println("\nCalculate optimal RSS...")
-g(x, u) = 1
-@time C, U = calculate_optimal_RSS(bcn, Z, g)
-println(Set(C))
-println("Finished. H = $(maximum(filter(isfinite, C))) by g = 1")
-println("\tTry another g...")
-g(x, u) = 0.01 * x + u
-@time C, U = calculate_optimal_RSS(bcn, Z, g)
-
+println("\nCalculate time-optimal robust set stabilization...")
+# g(x, u) = x in IcZ ? 0.0 : 1.0
+@time H, U = calculate_time_optimal_RSS(bcn, Z)
+println("How many initial states are stabilizable? ", count(isfinite, H))
+# we check arbitrarily three states 
+println("T* for an arbitrary state in IcZ: ", H[rand(IcZ)])
+println("T* for state 1: ", H[1])
+println("T* for state 1234: ", H[1234])
+println("The largest T* except infinity: ", maximum(H))
 
 #NOTE: the following code may be very slow
 # calculate LRCIS with wang2022 method
@@ -41,7 +36,8 @@ println("|IcZ| = ", length(IcZ))
 
 # calculate RSSD with wang2022 method; this method requires a large memory
 println("\nCalculate RSSD with wang2022...")
-# @time H, RSSD = Wang2022.calculate_RSSD(bcn, Z; verbose=true)
+@warn("It requires large memory (at least 32 GB) and excessively long runtime!")
+@time H, RSSD = Wang2022.calculate_RSSD(bcn, Z; verbose=true)
 println("H = $(H), |RSSD| = $(length(RSSD))")
 
 

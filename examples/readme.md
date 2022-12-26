@@ -1,7 +1,7 @@
 # Examples
 
-There are three subfolders: *small* for demonstrative examples, and *ara* and *TLGL* for the two
-biological networks in benchmark studies.
+There are three subfolders: *small* for demonstrative examples, and *TLGL* for the 
+biological network in benchmark studies.
 
 ## How to run
 
@@ -10,7 +10,7 @@ biological networks in benchmark studies.
 2. Change to the *examples* directory in REPL if not done yet (please use your actual path instead)
 
    ```julia
-    julia> cd("/home/shuhua/github/bcn_rss_p/src/examples")
+    julia> cd(raw"/home/shuhua/github/bcn_rss_p/src/examples")
    ```
 
 3. Enter ] into package mode, and then activate the environment in *examples*
@@ -25,14 +25,14 @@ biological networks in benchmark studies.
    (examples) pkg> instantiate
    ```
 
-5. Press backspace to return to the normal REPL mode. Then, change to a specific subpath as you want, e.g., to *ara*
+5. Press backspace to return to the normal REPL mode. Then, change to a specific subpath as you want, e.g., to *small*
 
    ```julia
-   julia> cd("./ara")
+   julia> cd("./small")
    ```
 
-6. Run Julia scripts according to instructions in that specific folder, e.g., if we want to execute the "ara_net.jl" script, just `include` it
+6. Run Julia scripts according to instructions in that specific folder, e.g., if we want to execute the "small.jl" script, just `include` it
 
    ```julia
-   julia> include("./ara_net.jl")
+   julia> include("./small.jl")
    ```

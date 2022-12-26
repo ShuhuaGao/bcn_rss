@@ -1,7 +1,7 @@
 name = "BCNRSS"
 uuid = "6b66a59a-ea08-4343-816b-36bfd7d7ba80"
 authors = ["Gao Shuhua <nus.gao.shuhua@gmail.com>"]
-version = "0.1.0"
+version = "0.2.0"
 
 [deps]
 JLD2 = "033835bb-8acc-5ee8-8aae-3f567f8a3819"
