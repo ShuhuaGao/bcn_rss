@@ -13,6 +13,6 @@ include("optimal_rss.jl")
 include("others/wang2022.jl")
 
 export calculate_Urb, calculate_S, calculate_LRCIS, calculate_RSSD, calculate_optimal_RSS,
-    calculate_ASSR, calculate_time_optimal_RSS
+    calculate_ASSR, calculate_time_optimal_RSS, BCN
 
 end # module

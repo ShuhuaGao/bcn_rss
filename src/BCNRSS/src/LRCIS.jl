@@ -96,6 +96,7 @@ end
 function calculate_LRCIS(bcn::BCN, Z::Set{<:Integer})::Set
     Φ = copy(Z)
     reduced = true
+    num_iter = 0
     while reduced
         reduced = false
         for x in Φ
@@ -104,6 +105,8 @@ function calculate_LRCIS(bcn::BCN, Z::Set{<:Integer})::Set
                 reduced = true
             end
         end
+        num_iter += 1
     end
+    @show num_iter
     return Φ
 end

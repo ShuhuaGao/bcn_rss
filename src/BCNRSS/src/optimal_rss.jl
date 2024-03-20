@@ -36,7 +36,7 @@ function calculate_optimal_RSS(bcn::BCN, Z::Set{<:Integer}, g::Function; IcZ=not
         H, H_new = H_new, H
         d += 1
     end
-    @debug "d = " d
+    println("Number of iterations in RDP: $d")
     
     # fetch the optimal control inputs
     U = Vector{Vector{Int}}(undef, N) # each state may have more than one feasible input
