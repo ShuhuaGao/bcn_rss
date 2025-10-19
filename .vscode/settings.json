@@ -1,11 +1,12 @@
 {
     "cSpell.words": [
         "BCNRSS",
+        "Fornasini",
         "LRCIS",
         "RCIS",
         "RSSD",
         "TLGL"
     ],
     "editor.formatOnSave": true,
-    "julia.environmentPath": "d:\\GitHub\\bcn_rss\\examples"
+    "julia.environmentPath": "e:\\GitHub\\BCN\\bcn_rss\\examples"
 }

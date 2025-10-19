@@ -107,6 +107,6 @@ function calculate_LRCIS(bcn::BCN, Z::Set{<:Integer})::Set
         end
         num_iter += 1
     end
-    @show num_iter
+    # @show num_iter
     return Φ
 end
