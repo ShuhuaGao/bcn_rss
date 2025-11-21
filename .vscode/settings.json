@@ -7,6 +7,5 @@
         "RSSD",
         "TLGL"
     ],
-    "editor.formatOnSave": true,
-    "julia.environmentPath": "e:\\GitHub\\BCN\\bcn_rss\\examples"
+    "editor.formatOnSave": true
 }

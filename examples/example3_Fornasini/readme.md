@@ -23,6 +23,8 @@ To facilitate the comparison, we provide the outputs of the two methods, i.e., c
   ```
 
 - Fornasini and Valcher's method:
+  - `T` represents the number of iterations in their algorithm
+  - `m(0) = m(1)` indicates that the algorithm is converged
   ```
     - T = 1000:, [m(0), m(1)] = 
     4×2 Matrix{Float64}:

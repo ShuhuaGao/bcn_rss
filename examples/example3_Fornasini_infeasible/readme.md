@@ -5,7 +5,7 @@
 This example is used to demonstrate the two methods' different characters in handling infeasible (non-stabilizable) problems.
 
 ## Files
-- `bcn.jl`: contains the BCN model in Example 3 but with `L` modified
+- `bcn.jl`: contains the BCN model in Example 3 but with `L` modified such that the problem becomes infeasible
 - `method_ours.jl`: solution using our method
 - `method_Fornasini.jl`: solution using the method proposed by Fornasini and Valcher
 
@@ -23,6 +23,8 @@ To facilitate the comparison, we provide the outputs of the two methods, i.e., c
   ```
 
 - Fornasini and Valcher's method:
+  - `T` represents the number of iterations in their algorithm
+  - `m(0) = m(1)` indicates that the algorithm is converged
   ```
     - T = 1000:, [m(0), m(1)] = 
     4×2 Matrix{Float64}:
