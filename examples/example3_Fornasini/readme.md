@@ -2,12 +2,26 @@
 
 (Fornasini-Valcher 2014): E. Fornasini and M. E. Valcher, Optimal Control of Boolean Control Networks, IEEE Transactions on Automatic Control, 59 (2014), pp. 1258–1270.
 
-This example is used to demonstrate the two methods' different characters regarding the upper bound of the number of iterations needed to find a solution.
+This example compares the finite-termination behavior of the two methods on a feasible problem. Both methods terminate finitely and return the same optimal value. The distinction illustrated here is that the convergence index of the Fornasini--Valcher recursion depends on the cost vector, whereas the RDP update bound used in our method is independent of the cost magnitudes.
 
 ## Files
 - `bcn.jl`: contains the BCN model in Example 3
 - `method_ours.jl`: solution using our method
 - `method_Fornasini.jl`: solution using the method proposed by Fornasini and Valcher
+- `comparison_sweep.jl`: reproduces the four-parameter comparison using exact rational arithmetic
+- `comparison_results.csv`: stable output of the parameter sweep
+- `plot_iteration_comparison.py`: reads the CSV and produces the vector comparison figure used in the manuscript
+
+## Reproduction
+
+From this directory, run
+
+```console
+julia --project=.. comparison_sweep.jl
+uv run --with matplotlib python plot_iteration_comparison.py --input comparison_results.csv --output fornasini_iteration_comparison.pdf
+```
+
+The sweep verifies the common optimal value and the update counts for \(\epsilon\in\{10^{-1},10^{-2},10^{-3},10^{-4}\}\). The Julia script uses rational arithmetic so that equality of successive value iterates is tested exactly.
 
 ## Outputs
 To facilitate the comparison, we provide the outputs of the two methods, i.e., copy the outputs of `method_ours.jl` and `method_Fornasini.jl` here.
@@ -104,8 +118,4 @@ To facilitate the comparison, we provide the outputs of the two methods, i.e., c
     0.0     0.0
   ```
 
-We see clearly that 
- - the optimal objective values in both methods are the same: `m* = [2.0, 1.0, 1.0001, 0.0]`
- - our method only needs 3 iterations to get the result, while Fornasini and Valcher's method needs more than 10000 iterations (until convergence implied by `m(0) = m(1)`).
-  
-Interested readers may try other values of `ϵ` in `bcn.jl`, and the same pattern will be observed.
+For \(\epsilon=10^{-4}\), both methods return `m* = [2.0, 1.0, 1.0001, 0.0]`. The RDP uses 3 updates, whereas equality of two consecutive Fornasini--Valcher value iterates is detected after 10,002 updates. More generally, the sweep gives 12, 102, 1,002, and 10,002 updates for that recursion. These are finite counts; the experiment illustrates their dependence on \(\epsilon\), not an absence of finite termination.

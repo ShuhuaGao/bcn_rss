@@ -2,12 +2,18 @@
 
 (Fornasini-Valcher 2014): E. Fornasini and M. E. Valcher, Optimal Control of Boolean Control Networks, IEEE Transactions on Automatic Control, 59 (2014), pp. 1258–1270.
 
-This example is used to demonstrate the two methods' different characters in handling infeasible (non-stabilizable) problems.
+This example modifies the transition matrix so that the stabilization problem is infeasible from three states. The solvability assumptions required by the Fornasini--Valcher optimal-control construction are therefore not satisfied. A complete application of that method would first perform its separate reachability/stabilizability check; the value-iteration output below records only what happens if that pre-check is deliberately skipped.
 
 ## Files
 - `bcn.jl`: contains the BCN model in Example 3 but with `L` modified such that the problem becomes infeasible
 - `method_ours.jl`: solution using our method
 - `method_Fornasini.jl`: solution using the method proposed by Fornasini and Valcher
+
+The consolidated exact-arithmetic verification is in [`../example3_Fornasini/comparison_sweep.jl`](../example3_Fornasini/comparison_sweep.jl). Run it from the feasible-example directory with
+
+```console
+julia --project=.. comparison_sweep.jl
+```
 
 ## Outputs
 To facilitate the comparison, we provide the outputs of the two methods, i.e., copy the outputs of `method_ours.jl` and `method_Fornasini.jl` here.
@@ -22,7 +28,7 @@ To facilitate the comparison, we provide the outputs of the two methods, i.e., c
       0.0
   ```
 
-- Fornasini and Valcher's method:
+- Fornasini and Valcher's value recursion, run without the required solvability pre-check:
   - `T` represents the number of iterations in their algorithm
   - `m(0) = m(1)` indicates that the algorithm is converged
   ```
@@ -174,6 +180,4 @@ To facilitate the comparison, we provide the outputs of the two methods, i.e., c
     0.0     0.0
   ```
 
-We see clearly that 
- - Our RDP algorithm terminated in **one** iteration with the optimal value vector $[\infty, \infty, \infty, 0]$. This result explicitly and correctly identifies that the states $\{ \delta_4^1, \delta_4^2,\delta_4^3\}$ cannot be stabilized to $\delta_4^4$.
- -  Fornasini and Valcher's method failed to converge (even after **20,000** iterations}).
+Our RDP stops after **one** update with the extended-value vector $[\infty,\infty,\infty,0]$, identifying the three initial states from which the target cannot be reached. If the Fornasini--Valcher value recursion is run while omitting its required pre-check, two successive iterates are still unequal after **20,000** updates. This observation concerns that recurrence outside its solvability assumptions; it is not a claim that the complete Fornasini--Valcher method fails or lacks finite termination on its intended feasible problem class.
